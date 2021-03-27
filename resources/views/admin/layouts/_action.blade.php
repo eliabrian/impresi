@@ -1,0 +1,1 @@
+<a href="{{ route('post.edit', $id) }}">Edit</a>
