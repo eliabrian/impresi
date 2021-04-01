@@ -14,6 +14,7 @@
     <script src="{{ asset('js/admin.js') }}" defer></script>
     <script src="https://cdn.tiny.cloud/1/{{ config('credentials.tinyMce') }}/tinymce/5/tinymce.min.js" referrerpolicy="origin" defer></script>
     <script src="{{ asset('js/dashboard.js') }}" defer></script>
+    @cloudinaryJS
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

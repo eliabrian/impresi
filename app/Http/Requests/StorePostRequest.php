@@ -31,6 +31,7 @@ class StorePostRequest extends FormRequest
             'content' => 'nullable',
             'slug' => 'nullable|unique:posts,slug',
             'published' => 'nullable|boolean',
+            'cover_image' => 'image|nullable|max:2000',
         ];
     }
 

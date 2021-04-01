@@ -7,7 +7,7 @@
             <div class="mr-auto align-self-center"><strong>{{__('Edit A Post')}}</strong></div>
         </div>
         <div class="card-body">
-            <form action="{{ route('post.update', $post->id) }}" method="post">
+            <form action="{{ route('post.update', $post->id) }}" method="post" enctype="multipart/form-data">
                 @method('put')
                 @csrf
                 <div class="form-group">
@@ -50,6 +50,18 @@
                                         </div>
                                     @enderror
                                     <small class="text-muted">You can leave this empty, We will create it for you!</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cover_image">Cover Image</label>
+                                    @if($post->getMedia())
+                                        <img class="img-fluid mb-2" src="{{ $post->getMedia()->file_url }}" alt="{{ $post->getMedia()->file_name  }}">
+                                    @endif
+                                    <input type="file" class="form-control-file @error('cover_image') is-invalid @enderror" id="cover_image" name="cover_image" accept="image/png, .jpeg, .jpg, image/gif">
+                                    @error('cover_image')
+                                        <div class="error">
+                                            <small class="text-danger">{{ $message }}</small>
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="description">{{ __('Description') }}<small class="text-danger">*</small></label>

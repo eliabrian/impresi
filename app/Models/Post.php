@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use CloudinaryLabs\CloudinaryLaravel\MediaAlly;
 use DataTables;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, MediaAlly;
 
     protected $fillable = [
         'title',
@@ -47,6 +48,11 @@ class Post extends Model
 		return Carbon::createFromTimestamp(strtotime($value))
         ->timezone('Asia/Jakarta')
         ->toDateTimeString();
+    }
+
+    public function getMedia()
+    {
+        return $this->fetchFirstMedia();
     }
 
     public function datatable()

@@ -31,6 +31,7 @@ class UpdatePostRequest extends FormRequest
             'content' => 'nullable',
             'slug' => 'nullable|unique:posts,slug,' . $this->post->id,
             'published' => 'nullable|boolean',
+            'cover_image' => 'nullable|image|max:2000',
         ];
     }
 

@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
 
         /*

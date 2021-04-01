@@ -67,7 +67,11 @@ class PostController extends Controller
         $data = $request->only(['title', 'content', 'published', 'slug', 'description']);
         $validated = $request->validated();
         
-        $created = Auth::user()->posts()->create($validated);
+        $created = Auth::user()->posts()->create($data);
+
+        if(isset($validated['cover_image'])){
+            $created->attachMedia($validated['cover_image']);
+        }
 
         if($created){
             return redirect(route('post.index'))->with('status', 'Post created!');
@@ -90,7 +94,10 @@ class PostController extends Controller
         $data = $request->only(['title', 'content', 'published', 'slug', 'description']);
         $validated = $request->validated();
 
-        $updated = Post::where('id', $post->id)->update($validated);
+        $updated = Post::where('id', $post->id)->update($data);
+        if(isset($validated['cover_image'])){
+            $post->updateMedia($request->cover_image);
+        }
         
         if($updated){
             return redirect(route('post.index'))->with('status', 'Post updated !');
